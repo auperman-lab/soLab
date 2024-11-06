@@ -8,21 +8,27 @@ import (
 func main() {
 	wg := sync.WaitGroup{}
 
-	prod1 := task2.NewProducer(1, 5, 3)
-	prod2 := task2.NewProducer(2, 5, 3)
-	prod3 := task2.NewProducer(3, 10, 3)
+	numProducers := 3
+	maxItemsProduced := 5
+	maxItemsBuffer := 3
+
+	producers := make([]*task2.Producer, numProducers)
+	for i := 0; i < numProducers; i++ {
+		producers[i] = task2.NewProducer(int8(i+1), maxItemsProduced, maxItemsBuffer)
+	}
 
 	consumer := task2.NewConsumer(0, 5)
 
-	wg.Add(3)
-	go prod1.Produce(&wg)
-	go prod2.Produce(&wg)
-	go prod3.Produce(&wg)
+	for _, producer := range producers {
+		wg.Add(1)
+		go producer.Produce(&wg)
+	}
 
-	wg.Add(3)
-	go consumer.Consume(prod1, &wg)
-	go consumer.Consume(prod2, &wg)
-	go consumer.Consume(prod3, &wg)
+	for _, producer := range producers {
+		wg.Add(1)
+		go consumer.Consume(producer, &wg)
+
+	}
 
 	wg.Wait()
 

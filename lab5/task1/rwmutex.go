@@ -3,7 +3,7 @@ package task1
 import "sync"
 
 type RWMutex struct {
-	mu          sync.RWMutex
+	mu          sync.Mutex
 	readerCount uint32
 	writerCount uint32
 	writing     bool

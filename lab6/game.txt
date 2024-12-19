@@ -1,0 +1,367 @@
+Last login: Sat Dec 14 21:28:24 on ttys000
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+Macriis-MacBook-Pro:bashcrawl-master macriidanu$ ls
+LICENSE		README.md	entrance
+Macriis-MacBook-Pro:bashcrawl-master macriidanu$ cd entrance/
+Macriis-MacBook-Pro:entrance macriidanu$ ls
+cellar	scroll
+Macriis-MacBook-Pro:entrance macriidanu$ tree
+.
+├── cellar
+│   ├── armoury
+│   │   ├── chamber
+│   │   │   ├── scroll
+│   │   │   ├── spell
+│   │   │   ├── statue
+│   │   │   └── treasure
+│   │   ├── potion
+│   │   ├── scroll
+│   │   └── treasure
+│   ├── scroll
+│   └── treasure
+└── scroll
+
+4 directories, 10 files
+Macriis-MacBook-Pro:entrance macriidanu$ cat scroll 
+
+It is pitch black in these catacombs.
+You have a magickal spell that lists all items in a room.
+
+To see in the dark, type:     ls
+To move around, type:         cd <directory>
+
+Try looking around this room.
+Then move into one of the next rooms.
+
+EXAMPLE:
+
+$ ls
+$ cd cellar
+
+Remember to cast ``ls`` when you get into the next room!
+
+Macriis-MacBook-Pro:entrance macriidanu$ cd cellar/
+Macriis-MacBook-Pro:cellar macriidanu$ ls
+armoury		scroll		treasure
+Macriis-MacBook-Pro:cellar macriidanu$ cat scroll 
+
+# Illusions are strong here.
+# It is difficult to tell what is a doorway and what is an object.
+#
+# The magic spell you use to look can be augmented.
+#
+# From now on, cast your spell like this:
+#
+# ls -F
+#
+# Directories (the rooms of these catacombs) end with a / symbol.
+#
+# Encounters (programs) end with a * symbol.
+#
+# You can avoid having to type `ls -F` every time by running the
+# following:
+#
+# alias ls='ls -F'
+#
+# This is known as a shell or command alias.  With this alias,
+# typing simply ls by itself will run ls -F. Try it out!
+#
+Macriis-MacBook-Pro:cellar macriidanu$ alias ls='ls -F'
+Macriis-MacBook-Pro:cellar macriidanu$ ./treasure 
+You have found an emerald **amulet**!
+
+To collect treasure, you must have a variable to hold your inventory.
+
+Create a variable and add your treasure to it like this:
+
+export I=amulet,$I
+
+You can always check your wealth with this command:
+
+echo $I
+
+Macriis-MacBook-Pro:cellar macriidanu$ export I=amulet,$I
+Macriis-MacBook-Pro:cellar macriidanu$ ls
+armoury/	scroll		treasure*
+Macriis-MacBook-Pro:cellar macriidanu$ cd armoury/
+Macriis-MacBook-Pro:armoury macriidanu$ ls
+chamber/	potion*		scroll		treasure*
+Macriis-MacBook-Pro:armoury macriidanu$ cat scroll 
+
+# You can interact with items in the room (they end with a *)
+# by running them as a command (a shell script).
+#
+# For example, to collect treasure:
+#
+# ./treasure
+#
+# The . (dot) means *don't move*, and the name of the 
+# script makes the code run.  This is known as a 
+# relative path, and the . means the current room
+# (directory).
+#
+# You may have left treasure in the previous room.
+# Go back to a previous directory with two dots,
+# which means *take a step back*.
+#
+# EXAMPLE:
+#
+# cd ..
+
+Macriis-MacBook-Pro:armoury macriidanu$ ./ treasure 
+-bash: ./: is a directory
+Macriis-MacBook-Pro:armoury macriidanu$ ./treasure 
+You have found a gleaming silver **sword**!  You marvel at
+its craftsmanship, and you recall tales from your childhood
+of the great mystic king Rannismir who bore such a sword to
+protect the kingdom from the undead.
+
+Add this item to your inventory:
+
+export I=sword,$I
+
+Remember, you can check your inventory:
+
+echo $I
+
+Macriis-MacBook-Pro:armoury macriidanu$ export I=sword,$I
+Macriis-MacBook-Pro:armoury macriidanu$ cd chamber/
+Macriis-MacBook-Pro:chamber macriidanu$ ls
+scroll		spell*		statue*		treasure*
+Macriis-MacBook-Pro:chamber macriidanu$ ./treasure 
+
+You have found a stash of **coins**!  They are old and worn
+with age,  but they still gleam in the magickal light
+emanating from your eyes.
+
+Prefix this item to your inventory:
+
+export I=coins,$I
+
+Remember, you can check your inventory:
+
+echo $I
+
+Macriis-MacBook-Pro:chamber macriidanu$ export I=coins,$I
+Macriis-MacBook-Pro:chamber macriidanu$  cat scroll 
+
+# You seem to have reached the end of this hall.
+#
+# Turn back and try another path.
+#
+# Remember, to back track one directory, you type:
+#
+# cd ..
+#
+# If you are drawing a map of your progress,
+# you can always get the name of your working
+# directory with this command:
+#
+# pwd
+
+Macriis-MacBook-Pro:chamber macriidanu$ ./spell 
+Runes, the language of the ancient mystics that once ruled
+this land, are inscribed upon the western wall.
+
+Do you want to read them? y/n  y
+You recall the lessons of Caitlyn the Green, who taught you
+these ancient letters.
+
+The runes are instructions on how to summon a portal that
+will allow you to walk through an invisible door contained
+in the wall.
+
+In Bash, a symbolic link (symlink) is a *shortcut* to
+another file or directory.  Create one from this room to the
+adjacent one:
+
+ln -fs ../../../chapel/courtyard/aviary/hall portal
+
+Macriis-MacBook-Pro:chamber macriidanu$ ln -fs ../../../chapel/courtyard/aviary/hall portal
+Macriis-MacBook-Pro:chamber macriidanu$ ls
+portal@		scroll		spell*		statue*		treasure*
+Macriis-MacBook-Pro:chamber macriidanu$ cd portal
+Macriis-MacBook-Pro:portal macriidanu$ ls
+library/	monster*
+Macriis-MacBook-Pro:portal macriidanu$ treww
+-bash: treww: command not found
+Macriis-MacBook-Pro:portal macriidanu$ pwd
+/Users/macriidanu/Desktop/soLab/lab6/bashcrawl-master/entrance/cellar/armoury/chamber/portal
+Macriis-MacBook-Pro:portal macriidanu$ cd library/
+Macriis-MacBook-Pro:library macriidanu$ ls
+scroll	tome*
+Macriis-MacBook-Pro:library macriidanu$ cat scroll 
+#
+# You are in a small library.  There are
+# shelves on all sides of the room,
+# containing many books and knicknacks.
+# Before you, there is a small table
+# with a very large book open on it.
+#
+
+Macriis-MacBook-Pro:library macriidanu$ ./tome 
+
+You see a large tome on the table, open
+to a page in the middle of the book.
+
+Do you read it? y/n  y
+
+The tome appears to be a book of spells.  Here is the
+first spell:
+
+
+View the world in color!
+
+If you have a modern, color terminal, you can view the
+output of the ls command in color!  This will still be a
+valid command if you don't have a color terminal, you just
+won't see colors.  Try this:
+
+alias ls='ls -F --color=auto'
+
+Now when you run the "ls" command by itself, rooms
+(directories), scrolls (text files), and encounters
+(executable files) should each have different colors.
+Depending on the $LS_COLORS variable, many other files will
+have different colors too!
+
+You can read more about colors by consulting the
+"dircolors" manual.  To read more, type this spell:
+
+man dircolors
+
+In the manual, you can type 'q' (without quotes) to
+exit the manual page.
+
+Do you want to read another spell? y/n  n
+Macriis-MacBook-Pro:library macriidanu$ alias ls='ls -F --color=auto'
+Macriis-MacBook-Pro:library macriidanu$ ls
+scroll	tome*
+Macriis-MacBook-Pro:library macriidanu$ ./tome 
+
+You see a large tome on the table, open
+to a page in the middle of the book.
+
+Do you read it? y/n  y
+
+The tome appears to be a book of spells.  Here is the
+first spell:
+
+
+Map the entire dungeon!
+
+You can see the layout of the entire dungeon using the
+"tree" command.  You may need to install it as a separate
+package, consult your operating system package manager for
+details on how to do this.  If you're reading this from the
+library, your relative current directory path should be:
+
+entrance/chapel/courtyard/aviary/hall/library
+
+If you run the following command, from the library:
+
+tree -F ..
+
+You should see this:
+
+..
+├── library/
+│   ├── scroll
+│   └── tome*
+└── monster*
+
+The "tree" command takes many of the same options as the
+"ls" command, including colors and viewing hidden files.  Go
+back to the entrance and try it out!
+
+Do you want to read another spell? y/n  y
+
+Keep track of where you've been!
+
+Instead of using "cd <room>" and "cd .." to
+navigate the catacombs, you can keep track of the
+rooms you've been in by using "pushd" and "popd".
+"pushd", as the name implies, pushes the directory you
+pass as the argument onto the room (directory) stack.
+Use it like so:
+
+pushd <room>
+
+The angle brackets mean you specify the room (directory),
+you don't type the angle brackets.  To see your current
+stack, type the following command:
+
+dirs
+
+This will print out the list of directories on the stack.
+The data structure is a known as a stack, because you only
+add or remove elements from the top of the stack, it is also
+known as a LIFO (Last In, First Out) data structure.  To
+remove the top room (directory) from the stack, and change
+directory to the new directory on the top of the stack, use
+"popd", like so:
+
+popd
+
+This will remove the top element of the stack ("pop" it off the
+stack), and change directory to the next top of the stack.
+
+Here's an example.  You're in a room (directory) called
+~/bashcrawl/entrance/field/, with the following
+other rooms:
+
+cemetary/ jail/ oubliette/
+
+To change directory to the cemetary, and place it on the directory
+stack, use this:
+
+pushd cemetary
+
+Now, the directory stack (output of the "dirs" command),
+shows this:
+
+~/bashcrawl/entrance/field/cemetary ~/bashcrawl/entrance/field
+
+...and your current directory (present working directory,
+held in the $PWD variable) is the cemetary.  To go back to
+the field, run "popd".  The directory stack will return to
+~/bashcrawl/entrance/field, and your current directory will
+be that directory.  You can mix and match "pushd" with "cd",
+and only the directories you add with "pushd" will be on the
+stack.  This is useful for returning to another directory,
+after exploring the rest of the dungeon.
+
+Good luck!
+
+Do you want to read another spell? y/n  y
+
+Use emacs mode to navigate the command prompt (CLI)!
+
+By default, in Bash, emacs mode is enabled.  If it is not
+enabled you can run this in your shell:
+
+set -o emacs
+
+This allows you to move the cursor in the shell faster than
+using the arrow keys alone.  Specific command key
+chords/combinations can be used, like so:
+
+- Ctrl-a:  move cursor to the beginning of the line
+- Ctrl-e:  move cursor to the end of the line
+- Meta-b:  (or Alt-b), move backward one word
+- Meta-f:  (or Alt-f), move forward one word
+- Ctrl-u:  Cut from cursor to beginning of line
+- Ctrl-k:  Cut from cursor to end of line
+- Ctrl-w:  Cut previous word
+- Ctrl-y:  Paste what you just cut with Ctrl-u, Ctrl-k, or
+           Ctrl-w
+- Ctrl-_:  Undo last cut (may not work in all terminals)
+
+Now you can navigate the shell like a pro!
+
+Do you want to read another spell? y/n  n
+Macriis-MacBook-Pro:library macriidanu$ 
+
